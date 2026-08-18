@@ -1,0 +1,59 @@
+{
+  "name": "nuutapao-downloader",
+  "version": "2.6.7",
+  "description": "Nuutapao Downloader - Beautiful frontend for yt-dlp",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "test": "node --test",
+    "build": "electron-builder --win --x64",
+    "build:custom-setup": "node scripts/build-custom-installer.js",
+    "setup": "electron installer/main.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "ffmpeg-static": "^5.2.0",
+    "multer": "^2.2.0",
+    "uuid": "^9.0.0",
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "electron": "^30.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.nuutapao.downloader",
+    "productName": "Nuutapao Downloader",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "server.js",
+      "app-state.js",
+      "package.json",
+      "public/**",
+      "!public/app/**"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "public/logo.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false,
+      "allowElevation": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Nuutapao Downloader",
+      "include": "installer.nsh"
+    },
+    "extraResources": [
+      { "from": "tools/yt-dlp.exe", "to": "tools/yt-dlp.exe" },
+      { "from": "node_modules/ffmpeg-static/ffmpeg.exe", "to": "tools/ffmpeg.exe" }
+    ]
+  }
+}

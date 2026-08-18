@@ -1,0 +1,7 @@
+This directory contains third-party command-line tools bundled for offline use.
+
+yt-dlp.exe is distributed from the official yt-dlp release project:
+https://github.com/yt-dlp/yt-dlp
+
+ffmpeg.exe is supplied by the ffmpeg-static package. See its package files for
+the corresponding FFmpeg licensing information.
